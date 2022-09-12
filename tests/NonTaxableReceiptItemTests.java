@@ -1,6 +1,7 @@
 import com.esiljak.exceptions.IllegalItemNameException;
 import com.esiljak.exceptions.IllegalPriceException;
 import com.esiljak.exceptions.IllegalQuantityException;
+import com.esiljak.models.NonTaxableReceiptItem;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +12,7 @@ public class NonTaxableReceiptItemTests {
     private final int QUANTITY = 3;
 
     @Test
-    void basicCreateTest(){
+    void basicCreateTest() throws Exception {
         NonTaxableReceiptItem item = new NonTaxableReceiptItem(ITEM_NAME, PRICE, QUANTITY);
 
         assertEquals(ITEM_NAME, item.getName(), "Item name not set correctly through the constructor");
@@ -20,13 +21,13 @@ public class NonTaxableReceiptItemTests {
     }
 
     @Test
-    void noQuantityPassedTest(){
+    void noQuantityPassedTest() throws Exception {
         NonTaxableReceiptItem item = new NonTaxableReceiptItem(ITEM_NAME, PRICE);
         assertEquals(1, item.getQuantity(), "Quantity must be 1 if it's not passed in the constructor");
     }
 
     @Test
-    void setterTest(){
+    void setterTest() throws Exception{
         NonTaxableReceiptItem item = new NonTaxableReceiptItem(ITEM_NAME, PRICE, QUANTITY);
 
         item.setName("new name");
@@ -40,7 +41,7 @@ public class NonTaxableReceiptItemTests {
     }
 
     @Test
-    void nonPositiveQuantity(){
+    void nonPositiveQuantity() {
         assertThrows(IllegalQuantityException.class, () -> {
            new NonTaxableReceiptItem(ITEM_NAME, PRICE, 0);
         }, "Quantity cannot be negative or zero - constructor");
@@ -90,7 +91,7 @@ public class NonTaxableReceiptItemTests {
     }
 
     @Test
-    void calculateTaxTest(){
+    void calculateTaxTest() throws Exception{
         NonTaxableReceiptItem item = new NonTaxableReceiptItem(ITEM_NAME, PRICE, QUANTITY);
         assertEquals(0, item.calculateTax(), "For non taxable item tax has to be zero");
 
