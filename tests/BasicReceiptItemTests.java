@@ -81,6 +81,15 @@ public class BasicReceiptItemTests {
             BasicReceiptItem item = new BasicReceiptItem(ITEM_NAME, PRICE, QUANTITY);
             item.setName("");
         }, "Item name cannot be empty string - setter");
+
+        assertThrows(IllegalItemNameException.class, () -> {
+            new BasicReceiptItem(null, PRICE, QUANTITY);
+        }, "Item name cannot be null - constructor");
+
+        assertThrows(IllegalItemNameException.class, () -> {
+            BasicReceiptItem item = new BasicReceiptItem(ITEM_NAME, PRICE, QUANTITY);
+            item.setName(null);
+        }, "Item name cannot be null - setter");
     }
 
     @Test
