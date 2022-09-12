@@ -1,3 +1,4 @@
+import com.esiljak.ReceiptItem;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,8 +31,8 @@ public class ReceiptItemTests {
         item.setQuantity(2*QUANTITY);
         assertEquals(2*QUANTITY, item.getQuantity(), "Quantity not set right through the setter");
 
-        item.setName(ITEM_NAME + " 2");
-        assertEquals(ITEM_NAME + " 2", item.getName(), "Item name not set right through the setter");
+        item.setItemName(ITEM_NAME + " 2");
+        assertEquals(ITEM_NAME + " 2", item.getItemName(), "Item name not set right through the setter");
     }
 
     @Test
@@ -49,12 +50,12 @@ public class ReceiptItemTests {
     @Test
     void priceIsNotNegativeTest(){
         assertThrows(IllegalPriceException.class, () -> {
-           new ReceiptItem(ITEM_NAME, -0.5);
+           new ReceiptItem(ITEM_NAME, -0.5f);
         }, "Price cannot be negative - constructor");
 
         assertThrows(IllegalPriceException.class, () -> {
             ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE);
-            item.setPrice(-0.5);
+            item.setPrice(-0.5f);
         }, "Price cannot be negative - setter");
 
         assertDoesNotThrow(IllegalPriceException.class, () -> {
@@ -71,7 +72,7 @@ public class ReceiptItemTests {
 
         assertThrows(IllegalItemNameException.class, () -> {
             ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
-            item.setName("");
+            item.setItemName("");
         }, "Item name cannot be empty string - setter");
     }
 
