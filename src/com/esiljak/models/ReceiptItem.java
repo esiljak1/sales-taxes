@@ -7,7 +7,7 @@ import com.esiljak.exceptions.IllegalQuantityException;
 public abstract class ReceiptItem {
     private String name;
     private float price;
-    private int quantity;
+    private int quantity = 1;
 
     private void checkItemName(String itemName) throws IllegalItemNameException {
         if(itemName == null || itemName.trim().isEmpty())
@@ -64,5 +64,5 @@ public abstract class ReceiptItem {
         this.quantity = quantity;
     }
 
-    public abstract float calculateTax(float tax);
+    public abstract float calculateTax();
 }
