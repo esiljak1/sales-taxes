@@ -1,8 +1,9 @@
-package com.esiljak.model;
+package com.esiljak.models;
 
 import com.esiljak.exceptions.IllegalItemNameException;
 import com.esiljak.exceptions.IllegalPriceException;
 import com.esiljak.exceptions.IllegalQuantityException;
+import com.esiljak.helpers.NumberHelper;
 
 public class ReceiptItem {
     private String name;
@@ -65,6 +66,6 @@ public class ReceiptItem {
     }
 
     public float calculateTax() {
-        return 0;
+        return NumberHelper.roundUpTax(10 * (price * quantity) / 100);
     }
 }

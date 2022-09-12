@@ -1,6 +1,6 @@
 import com.esiljak.exceptions.IllegalPriceException;
 import com.esiljak.exceptions.IllegalQuantityException;
-import com.esiljak.model.ReceiptItem;
+import com.esiljak.models.ReceiptItem;
 import com.esiljak.exceptions.IllegalItemNameException;
 import org.junit.jupiter.api.Test;
 
