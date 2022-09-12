@@ -41,7 +41,8 @@ public class ReceiptItem {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws IllegalItemNameException {
+        checkItemName(name);
         this.name = name;
     }
 
@@ -49,7 +50,8 @@ public class ReceiptItem {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(float price) throws IllegalPriceException {
+        checkPrice(price);
         this.price = price;
     }
 
@@ -57,7 +59,12 @@ public class ReceiptItem {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(int quantity) throws IllegalQuantityException {
+        checkQuantity(quantity);
         this.quantity = quantity;
+    }
+
+    public float calculateTax() {
+        return 0;
     }
 }

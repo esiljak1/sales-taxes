@@ -11,6 +11,10 @@ public class ReceiptItemTests {
     private final float PRICE = 10;
     private final int QUANTITY = 2;
 
+    private float roundTax(float tax){
+        return Math.round(tax * 20) / 20.f;
+    }
+
     @Test
     void createBasicReceiptItemTest() throws Exception {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
@@ -82,8 +86,8 @@ public class ReceiptItemTests {
     @Test
     void calculateTaxBasicTest() throws Exception {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
-        float expectedTax = (PRICE * QUANTITY) / 100;
+        float expectedTax = 10 * (PRICE * QUANTITY) / 100;
 
-        assertEquals(expectedTax, item.calculateTax(), "Tax not calculated by the correct formula");
+        assertEquals(roundTax(expectedTax), item.calculateTax(), "Tax not calculated by the correct formula");
     }
 }
