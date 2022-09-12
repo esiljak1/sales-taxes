@@ -2,9 +2,10 @@ package com.esiljak.model;
 
 import com.esiljak.exceptions.IllegalItemNameException;
 import com.esiljak.exceptions.IllegalPriceException;
+import com.esiljak.exceptions.IllegalQuantityException;
 
 public class ReceiptItem {
-    private String itemName;
+    private String name;
     private float price;
     private int quantity = 1;
 
@@ -18,24 +19,30 @@ public class ReceiptItem {
             throw new IllegalPriceException("Price cannot be negative");
     }
 
-    public ReceiptItem(String itemName, float price) throws IllegalItemNameException, IllegalPriceException {
-        checkItemName(itemName);
+    private void checkQuantity(int quantity) throws IllegalQuantityException {
+        if(quantity <= 0)
+            throw new IllegalQuantityException("Quantity must be positive");
+    }
+
+    public ReceiptItem(String name, float price) throws IllegalItemNameException, IllegalPriceException {
+        checkItemName(name);
         checkPrice(price);
-        this.itemName = itemName;
+        this.name = name;
         this.price = price;
     }
 
-    public ReceiptItem(String itemName, float price, int quantity) throws IllegalItemNameException, IllegalPriceException {
-        this(itemName, price);
+    public ReceiptItem(String name, float price, int quantity) throws IllegalItemNameException, IllegalPriceException, IllegalQuantityException {
+        this(name, price);
+        checkQuantity(quantity);
         this.quantity = quantity;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getName() {
+        return name;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public float getPrice() {

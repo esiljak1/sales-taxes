@@ -1,4 +1,5 @@
 import com.esiljak.exceptions.IllegalPriceException;
+import com.esiljak.exceptions.IllegalQuantityException;
 import com.esiljak.model.ReceiptItem;
 import com.esiljak.exceptions.IllegalItemNameException;
 import org.junit.jupiter.api.Test;
@@ -33,8 +34,8 @@ public class ReceiptItemTests {
         item.setQuantity(2*QUANTITY);
         assertEquals(2*QUANTITY, item.getQuantity(), "Quantity not set right through the setter");
 
-        item.setItemName(ITEM_NAME + " 2");
-        assertEquals(ITEM_NAME + " 2", item.getItemName(), "Item name not set right through the setter");
+        item.setName(ITEM_NAME + " 2");
+        assertEquals(ITEM_NAME + " 2", item.getName(), "Item name not set right through the setter");
     }
 
     @Test
@@ -74,7 +75,7 @@ public class ReceiptItemTests {
 
         assertThrows(IllegalItemNameException.class, () -> {
             ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
-            item.setItemName("");
+            item.setName("");
         }, "Item name cannot be empty string - setter");
     }
 
