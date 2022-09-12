@@ -5,7 +5,7 @@ import com.esiljak.exceptions.IllegalPriceException;
 import com.esiljak.exceptions.IllegalQuantityException;
 import com.esiljak.helpers.NumberHelper;
 
-public class ReceiptItem {
+public class BasicReceiptItem {
     private String name;
     private float price;
     private int quantity = 1;
@@ -25,14 +25,14 @@ public class ReceiptItem {
             throw new IllegalQuantityException("Quantity must be positive");
     }
 
-    public ReceiptItem(String name, float price) throws IllegalItemNameException, IllegalPriceException {
+    public BasicReceiptItem(String name, float price) throws IllegalItemNameException, IllegalPriceException {
         checkItemName(name);
         checkPrice(price);
         this.name = name;
         this.price = price;
     }
 
-    public ReceiptItem(String name, float price, int quantity) throws IllegalItemNameException, IllegalPriceException, IllegalQuantityException {
+    public BasicReceiptItem(String name, float price, int quantity) throws IllegalItemNameException, IllegalPriceException, IllegalQuantityException {
         this(name, price);
         checkQuantity(quantity);
         this.quantity = quantity;
