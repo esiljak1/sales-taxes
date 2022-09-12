@@ -1,5 +1,6 @@
 import com.esiljak.helpers.NumberHelper;
 import com.esiljak.models.BasicReceiptItem;
+import com.esiljak.models.ImportedBasicReceiptItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ public class ImportedBasicReceiptItemTests {
     private ImportedBasicReceiptItem item;
 
     @BeforeEach
-    void initialize(){
+    void initialize() throws Exception {
         item = new ImportedBasicReceiptItem(ITEM_NAME, PRICE, QUANTITY);
     }
 
@@ -31,7 +32,7 @@ public class ImportedBasicReceiptItemTests {
     }
 
     @Test
-    void setterTest(){
+    void setterTest() throws Exception{
         item.setName(ITEM_NAME + " new");
         assertEquals(ITEM_NAME + " new", item.getName(), "Name not set correctly through the setter");
 
