@@ -1,6 +1,7 @@
 import com.esiljak.exceptions.IllegalItemNameException;
 import com.esiljak.exceptions.IllegalPriceException;
 import com.esiljak.exceptions.IllegalQuantityException;
+import com.esiljak.helpers.NumberHelper;
 import com.esiljak.models.BasicReceiptItem;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +11,6 @@ public class BasicReceiptItemTests {
     private final String ITEM_NAME = "item name";
     private final float PRICE = 10;
     private final int QUANTITY = 2;
-
-    private float roundTax(float tax){
-        return Math.round(tax * 20) / 20.f;
-    }
 
     @Test
     void createBasicReceiptItemTest() throws Exception {
@@ -97,6 +94,6 @@ public class BasicReceiptItemTests {
         BasicReceiptItem item = new BasicReceiptItem(ITEM_NAME, PRICE, QUANTITY);
         float expectedTax = 10 * (PRICE * QUANTITY) / 100;
 
-        assertEquals(roundTax(expectedTax), item.calculateTax(), "Tax not calculated by the correct formula");
+        assertEquals(NumberHelper.roundUpTax(expectedTax), item.calculateTax(), "Tax not calculated by the correct formula");
     }
 }
