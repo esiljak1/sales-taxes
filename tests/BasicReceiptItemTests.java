@@ -43,7 +43,7 @@ public class BasicReceiptItemTests {
     }
 
     @Test
-    void quantityIsPositiveTest(){
+    void nonNegativeQuantityTest(){
         assertThrows(IllegalQuantityException.class, () -> {
             new BasicReceiptItem(ITEM_NAME, PRICE, 0);
         }, "Quantity cannot be negative or zero - constructor");
@@ -55,7 +55,7 @@ public class BasicReceiptItemTests {
     }
 
     @Test
-    void priceIsNotNegativeTest(){
+    void negativePriceTest(){
         assertThrows(IllegalPriceException.class, () -> {
            new BasicReceiptItem(ITEM_NAME, -0.5f);
         }, "Price cannot be negative - constructor");
@@ -72,7 +72,7 @@ public class BasicReceiptItemTests {
     }
 
     @Test
-    void nameNotEmptyTest(){
+    void emptyNameTest(){
         assertThrows(IllegalItemNameException.class, () -> {
             new BasicReceiptItem("", PRICE, QUANTITY);
         }, "Item name cannot be empty string - constructor");
