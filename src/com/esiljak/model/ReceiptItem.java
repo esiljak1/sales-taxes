@@ -1,16 +1,24 @@
-package com.esiljak;
+package com.esiljak.model;
+
+import com.esiljak.exceptions.IllegalItemNameException;
 
 public class ReceiptItem {
     private String itemName;
     private float price;
     private int quantity = 1;
 
-    public ReceiptItem(String itemName, float price) {
+    private void checkItemName(String itemName) throws IllegalItemNameException {
+        if(itemName == null || itemName.trim().isEmpty())
+            throw new IllegalItemNameException("Item name cannot be null or empty");
+    }
+
+    public ReceiptItem(String itemName, float price) throws IllegalItemNameException {
+        checkItemName(itemName);
         this.itemName = itemName;
         this.price = price;
     }
 
-    public ReceiptItem(String itemName, float price, int quantity) {
+    public ReceiptItem(String itemName, float price, int quantity) throws IllegalItemNameException {
         this(itemName, price);
         this.quantity = quantity;
     }

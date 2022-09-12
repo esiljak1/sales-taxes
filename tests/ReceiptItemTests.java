@@ -1,4 +1,5 @@
-import com.esiljak.ReceiptItem;
+import com.esiljak.model.ReceiptItem;
+import com.esiljak.exceptions.IllegalItemNameException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,20 +10,20 @@ public class ReceiptItemTests {
     private final int QUANTITY = 2;
 
     @Test
-    void createBasicReceiptItemTest(){
+    void createBasicReceiptItemTest() throws IllegalItemNameException {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
         assertEquals(PRICE, item.getPrice(), "Price not set right through constructor");
         assertEquals(QUANTITY, item.getQuantity(), "Quantity not set right through constructor");
     }
 
     @Test
-    void noQuantityPassedTest(){
+    void noQuantityPassedTest() throws IllegalItemNameException {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE);
         assertEquals(1, item.getQuantity(), "Quantity must be 1 if it's not passed in the constructor");
     }
 
     @Test
-    void setterTest(){
+    void setterTest() throws IllegalItemNameException {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
 
         item.setPrice(2*PRICE);
@@ -77,7 +78,7 @@ public class ReceiptItemTests {
     }
 
     @Test
-    void calculateTaxBasicTest(){
+    void calculateTaxBasicTest() throws IllegalItemNameException {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
         float expectedTax = (PRICE * QUANTITY) / 100;
 
