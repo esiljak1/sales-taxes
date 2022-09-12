@@ -1,3 +1,4 @@
+import com.esiljak.exceptions.IllegalPriceException;
 import com.esiljak.model.ReceiptItem;
 import com.esiljak.exceptions.IllegalItemNameException;
 import org.junit.jupiter.api.Test;
@@ -10,20 +11,20 @@ public class ReceiptItemTests {
     private final int QUANTITY = 2;
 
     @Test
-    void createBasicReceiptItemTest() throws IllegalItemNameException {
+    void createBasicReceiptItemTest() throws Exception {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
         assertEquals(PRICE, item.getPrice(), "Price not set right through constructor");
         assertEquals(QUANTITY, item.getQuantity(), "Quantity not set right through constructor");
     }
 
     @Test
-    void noQuantityPassedTest() throws IllegalItemNameException {
+    void noQuantityPassedTest() throws Exception {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE);
         assertEquals(1, item.getQuantity(), "Quantity must be 1 if it's not passed in the constructor");
     }
 
     @Test
-    void setterTest() throws IllegalItemNameException {
+    void setterTest() throws Exception {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
 
         item.setPrice(2*PRICE);
@@ -59,7 +60,7 @@ public class ReceiptItemTests {
             item.setPrice(-0.5f);
         }, "Price cannot be negative - setter");
 
-        assertDoesNotThrow(IllegalPriceException.class, () -> {
+        assertDoesNotThrow(() -> {
             ReceiptItem item = new ReceiptItem(ITEM_NAME, 0);
             item.setPrice(0);
         }, "Price can be set to zero - constructor and setter");
@@ -78,7 +79,7 @@ public class ReceiptItemTests {
     }
 
     @Test
-    void calculateTaxBasicTest() throws IllegalItemNameException {
+    void calculateTaxBasicTest() throws Exception {
         ReceiptItem item = new ReceiptItem(ITEM_NAME, PRICE, QUANTITY);
         float expectedTax = (PRICE * QUANTITY) / 100;
 
