@@ -1,4 +1,5 @@
 import com.esiljak.helpers.NumberHelper;
+import com.esiljak.models.ImportedNonTaxableReceiptItem;
 import com.esiljak.models.NonTaxableReceiptItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ public class ImportedNonTaxableReceiptItemTests {
     private ImportedNonTaxableReceiptItem item;
 
     @BeforeEach
-    void initialize(){
+    void initialize() throws Exception{
         item = new ImportedNonTaxableReceiptItem(ITEM_NAME, PRICE, QUANTITY);
     }
 
@@ -31,7 +32,7 @@ public class ImportedNonTaxableReceiptItemTests {
     }
 
     @Test
-    void setterTest(){
+    void setterTest() throws Exception{
         item.setName("new name");
         assertEquals("new name", item.getName(), "Item name not set correctly through setter");
 
