@@ -96,4 +96,11 @@ public class NonTaxableReceiptItemTests {
         item.setQuantity(1);
         assertEquals(0, item.calculateTax(), "For non taxable item tax has to be zero");
     }
+
+    @Test
+    void priceWithTaxTest(){
+        float expectedPriceWithTax = item.getPrice();
+
+        assertEquals(expectedPriceWithTax, item.getPriceWithTax(), "Tax not correctly added to the price");
+    }
 }
