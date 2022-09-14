@@ -25,11 +25,11 @@ public class ReceiptTests {
     }
 
     private float calculatePrice(){
-        return receipt.getItems().stream().reduce((item1, item2) -> item1.getPrice() + item2.getPrice());
+        return ((float) receipt.getItems().stream().mapToDouble(ReceiptItem::getPrice).sum());
     }
 
     private float calculateTax(){
-        return receipt.getItems().stream().reduce((item1, item2) -> item1.calculateTax() + item2.calculateTax());
+        return ((float) receipt.getItems().stream().mapToDouble(ReceiptItem::calculateTax).sum());
     }
 
     @BeforeEach
