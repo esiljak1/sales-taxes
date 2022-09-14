@@ -4,6 +4,8 @@ import com.esiljak.exceptions.IllegalItemNameException;
 import com.esiljak.exceptions.IllegalPriceException;
 import com.esiljak.exceptions.IllegalQuantityException;
 
+import java.util.Locale;
+
 public abstract class ReceiptItem {
     private String name;
     private float price;
@@ -69,4 +71,9 @@ public abstract class ReceiptItem {
     }
 
     public abstract float calculateTax();
+
+    @Override
+    public String toString() {
+        return quantity + " " + name + ": " + String.format(Locale.ENGLISH, "%.02f", getPriceWithTax());
+    }
 }

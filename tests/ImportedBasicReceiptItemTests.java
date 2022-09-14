@@ -4,6 +4,8 @@ import com.esiljak.models.ImportedBasicReceiptItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -52,7 +54,7 @@ public class ImportedBasicReceiptItemTests {
     @Test
     void toStringTest(){
         float expectedPriceWithTax = NumberHelper.roundUpTax(15 * (PRICE * QUANTITY) / 100) + item.getPrice();
-        String expectedOutput = QUANTITY + " " + ITEM_NAME + ": " + expectedPriceWithTax;
+        String expectedOutput = QUANTITY + " " + ITEM_NAME + ": " + String.format(Locale.ENGLISH, "%.02f", expectedPriceWithTax);
         assertEquals(expectedOutput, item.toString());
     }
 }

@@ -5,6 +5,8 @@ import com.esiljak.models.NonTaxableReceiptItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class NonTaxableReceiptItemTests {
@@ -106,7 +108,7 @@ public class NonTaxableReceiptItemTests {
 
     @Test
     void toStringTest(){
-        String expectedOutput = QUANTITY + " " + ITEM_NAME + ": " + PRICE;
+        String expectedOutput = QUANTITY + " " + ITEM_NAME + ": " + String.format(Locale.ENGLISH, "%.02f", PRICE);
         assertEquals(expectedOutput, item.toString());
     }
 }
