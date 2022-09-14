@@ -102,4 +102,11 @@ public class BasicReceiptItemTests {
 
         assertEquals(expectedPriceWithTax, item.getPriceWithTax(), "Tax not correctly added to the price");
     }
+
+    @Test
+    void toStringTest(){
+        float expectedPriceWithTax = NumberHelper.roundUpTax(10 * (PRICE * QUANTITY) / 100) + item.getPrice();
+        String expectedOutput = QUANTITY + " " + ITEM_NAME + ": " + expectedPriceWithTax;
+        assertEquals(expectedOutput, item.toString());
+    }
 }

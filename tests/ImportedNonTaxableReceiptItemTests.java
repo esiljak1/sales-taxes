@@ -48,4 +48,11 @@ public class ImportedNonTaxableReceiptItemTests {
         float tax = 5 * (PRICE * QUANTITY) / 100;
         assertEquals(NumberHelper.roundUpTax(tax), item.calculateTax(), "Tax not calculated by the correct formula");
     }
+
+    @Test
+    void toStringTest(){
+        float expectedPriceWithTax = NumberHelper.roundUpTax(5 * (PRICE * QUANTITY) / 100) + item.getPrice();
+        String expectedOutput = QUANTITY + " " + ITEM_NAME + ": " + expectedPriceWithTax;
+        assertEquals(expectedOutput, item.toString());
+    }
 }

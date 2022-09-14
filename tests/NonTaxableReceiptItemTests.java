@@ -103,4 +103,10 @@ public class NonTaxableReceiptItemTests {
 
         assertEquals(expectedPriceWithTax, item.getPriceWithTax(), "Tax not correctly added to the price");
     }
+
+    @Test
+    void toStringTest(){
+        String expectedOutput = QUANTITY + " " + ITEM_NAME + ": " + PRICE;
+        assertEquals(expectedOutput, item.toString());
+    }
 }
