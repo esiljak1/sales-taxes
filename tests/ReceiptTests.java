@@ -111,4 +111,34 @@ public class ReceiptTests {
         assertEquals(calculateTax() + calculatePrice(), receipt.calculateTotalPrice(),
                 "Total price not calculated by the correct formula");
     }
+
+    @Test
+    void challengeTest1() throws Exception{
+        receipt.addItem(new NonTaxableReceiptItem("book", 12.49f));
+        receipt.addItem(new BasicReceiptItem("music CD", 14.99f));
+        receipt.addItem(new NonTaxableReceiptItem("chocolate bar", 0.85f));
+
+        assertEquals(1.50f, receipt.calculateTax(), "Tax not calculated correctly");
+        assertEquals(29.83f, receipt.calculateTotalPrice(), "Total price not calculated correctly");
+    }
+
+    @Test
+    void challengeTest2() throws Exception{
+        receipt.addItem(new ImportedNonTaxableReceiptItem("imported box of chocolates", 10f));
+        receipt.addItem(new ImportedBasicReceiptItem("imported bottle of perfume", 47.50f));
+
+        assertEquals(7.65f, receipt.calculateTax(), "Tax not calculated correctly");
+        assertEquals(65.15f, receipt.calculateTotalPrice(), "Total price not calculated correctly");
+    }
+
+    @Test
+    void challengeTest3() throws Exception{
+        receipt.addItem(new ImportedBasicReceiptItem("imported bottle of perfume", 27.99f));
+        receipt.addItem(new BasicReceiptItem("bottle of perfume", 18.99f));
+        receipt.addItem(new NonTaxableReceiptItem("packet of headache pills", 9.75f));
+        receipt.addItem(new ImportedNonTaxableReceiptItem("imported box of chocolates", 11.25f));
+
+        assertEquals(6.65f, receipt.calculateTax(), "Tax not calculated correctly");
+        assertEquals(74.63f, receipt.calculateTotalPrice(), "Total price not calculated correctly");
+    }
 }

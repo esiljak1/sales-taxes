@@ -1,6 +1,9 @@
 package com.esiljak.models;
 
+import com.esiljak.helpers.NumberHelper;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Receipt {
@@ -14,8 +17,9 @@ public class Receipt {
         this.items = items;
     }
 
-    public final List<ReceiptItem> getItems() {
-        return items;
+    public List<ReceiptItem> getItems() {
+        //Unmodifiable list to prohibit user from adding items through getter
+        return Collections.unmodifiableList(items);
     }
 
     public void setItems(List<ReceiptItem> items) {
@@ -27,7 +31,7 @@ public class Receipt {
     }
 
     public float calculateTax(){
-        return ((float) items.stream().mapToDouble(ReceiptItem::calculateTax).sum());
+        return NumberHelper.roundUpTax((float) items.stream().mapToDouble(ReceiptItem::calculateTax).sum());
     }
 
     public float calculateTotalPrice(){
