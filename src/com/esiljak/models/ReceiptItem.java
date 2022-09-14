@@ -74,6 +74,8 @@ public abstract class ReceiptItem {
 
     @Override
     public String toString() {
-        return quantity + " " + name + ": " + String.format(Locale.ENGLISH, "%.02f", getPriceWithTax());
+        String imported = (this instanceof ImportedNonTaxableReceiptItem || this instanceof ImportedBasicReceiptItem) ?
+                        "imported " : "";
+        return quantity + " " + imported + name + ": " + String.format(Locale.ENGLISH, "%.02f", getPriceWithTax());
     }
 }
