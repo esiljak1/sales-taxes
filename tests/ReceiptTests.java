@@ -124,8 +124,8 @@ public class ReceiptTests {
 
     @Test
     void challengeTest2() throws Exception{
-        receipt.addItem(new ImportedNonTaxableReceiptItem("imported box of chocolates", 10f));
-        receipt.addItem(new ImportedBasicReceiptItem("imported bottle of perfume", 47.50f));
+        receipt.addItem(new ImportedNonTaxableReceiptItem("box of chocolates", 10f));
+        receipt.addItem(new ImportedBasicReceiptItem("bottle of perfume", 47.50f));
 
         assertEquals(7.65f, receipt.calculateTax(), "Tax not calculated correctly");
         assertEquals(65.15f, receipt.calculateTotalPrice(), "Total price not calculated correctly");
@@ -133,12 +133,30 @@ public class ReceiptTests {
 
     @Test
     void challengeTest3() throws Exception{
-        receipt.addItem(new ImportedBasicReceiptItem("imported bottle of perfume", 27.99f));
+        receipt.addItem(new ImportedBasicReceiptItem("bottle of perfume", 27.99f));
         receipt.addItem(new BasicReceiptItem("bottle of perfume", 18.99f));
         receipt.addItem(new NonTaxableReceiptItem("packet of headache pills", 9.75f));
-        receipt.addItem(new ImportedNonTaxableReceiptItem("imported box of chocolates", 11.25f));
+        receipt.addItem(new ImportedNonTaxableReceiptItem("box of chocolates", 11.25f));
 
         assertEquals(6.65f, receipt.calculateTax(), "Tax not calculated correctly");
         assertEquals(74.63f, receipt.calculateTotalPrice(), "Total price not calculated correctly");
+    }
+
+    @Test
+    void toStringTest() throws Exception{
+        receipt.addItem(new ImportedBasicReceiptItem("bottle of perfume", 27.99f));
+        receipt.addItem(new BasicReceiptItem("bottle of perfume", 18.99f));
+        receipt.addItem(new NonTaxableReceiptItem("packet of headache pills", 9.75f));
+        receipt.addItem(new ImportedNonTaxableReceiptItem("box of chocolates", 11.25f));
+
+        String expectedOutput = """
+                > 1 imported bottle of perfume: 32.19
+                > 1 bottle of perfume: 20.89
+                > 1 packet of headache pills: 9.75
+                > 1 imported box of chocolates: 11.85
+                > Sales Taxes: 6.65
+                > Total: 74.63
+                """;
+        assertEquals(expectedOutput, receipt.toString());
     }
 }
