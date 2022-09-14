@@ -31,6 +31,6 @@ public class Receipt {
     }
 
     public float calculateTotalPrice(){
-        return ((float) items.stream().mapToDouble(ReceiptItem::getPrice).sum()) + calculateTax();
+        return ((float) items.stream().mapToDouble(ReceiptItem::getPriceWithTax).sum());
     }
 }
