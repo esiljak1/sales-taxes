@@ -64,5 +64,9 @@ public abstract class ReceiptItem {
         this.quantity = quantity;
     }
 
+    public float getPriceWithTax(){
+        return price + calculateTax();
+    }
+
     public abstract float calculateTax();
 }
