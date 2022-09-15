@@ -2,6 +2,7 @@ package com.esiljak.helpers;
 
 import com.esiljak.models.*;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class MainHelper {
@@ -43,6 +44,7 @@ public class MainHelper {
     }
 
     private static float itemPriceInput(){
+        scanner.useLocale(Locale.ENGLISH);
         while (true) {
             System.out.println("Please enter item price:");
             System.out.print("> ");
@@ -66,7 +68,7 @@ public class MainHelper {
     private static int itemQuantityInput(){
         while (true) {
             System.out.println("Please enter item quantity: ");
-            System.out.println("> ");
+            System.out.print("> ");
             int quantity;
             try {
                 quantity = scanner.nextInt();
@@ -128,5 +130,11 @@ public class MainHelper {
         boolean isImported = ynQuestion("Is the item imported?");
 
         return getItemType(isTaxable, isImported);
+    }
+
+    public static void printReceipt(Receipt receipt){
+        System.out.println("\n------------------------------");
+        System.out.println(receipt.toString());
+        System.out.println("------------------------------");
     }
 }
