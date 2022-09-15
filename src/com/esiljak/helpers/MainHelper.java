@@ -12,11 +12,12 @@ public class MainHelper {
 
     private static boolean ynQuestion(String message){
         while(true){
-            System.out.println(message);
+            System.out.println(message + " (True/False)");
             System.out.print("> ");
             boolean answer;
             try {
                 answer = scanner.nextBoolean();
+                System.out.println();
             }catch (Exception e){
                 scanner.nextLine();
                 System.out.println("Wrong input, please try again.");
@@ -34,6 +35,7 @@ public class MainHelper {
             String name;
             try {
                 name = scanner.nextLine();
+                System.out.println();
             }catch (Exception e){
                 scanner.nextLine();
                 System.out.println("Invalid input, please try again!");
@@ -51,6 +53,7 @@ public class MainHelper {
             float price;
             try {
                 price = scanner.nextFloat();
+                System.out.println();
             }catch (Exception e){
                 scanner.nextLine();
                 System.out.println("Invalid input, please try again!");
@@ -72,6 +75,7 @@ public class MainHelper {
             int quantity;
             try {
                 quantity = scanner.nextInt();
+                System.out.println();
             }catch (Exception e){
                 scanner.nextLine();
                 System.out.println("Invalid input, please try again!");
@@ -114,6 +118,7 @@ public class MainHelper {
             System.out.print("> ");
             try{
                 input = scanner.nextInt();
+                System.out.println();
             }catch (Exception e){
                 System.out.println("Invalid command!");
                 continue;
